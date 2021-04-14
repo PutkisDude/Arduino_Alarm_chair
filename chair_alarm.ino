@@ -53,8 +53,8 @@ void alarm(){
    }
  }
   sitTime = 0;                          // reset sit time
-  afkTime = 0;
-  standTime = 0;
+  afkTime = 0;                          // reset afk time
+  standTime = 0;                        // reset standtime
   digitalWrite(RED_LED, LOW);            // Turn Red LED OFF when loop turns off
 }
 
