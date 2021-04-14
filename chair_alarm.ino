@@ -1,3 +1,6 @@
+// HÄLYTTÄVÄ TOIMISTOTUOLI - TEAM UNICORN
+// Version 0.2
+
 const int RED_LED = 6; // Red led in digital port 6
 const int BUZZER = 7; // Buzz in digital port 7
 const int SWITCHER = 9; // Switch in digital port 9
