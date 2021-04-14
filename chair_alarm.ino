@@ -7,8 +7,8 @@ const double minute = 60; // constant value to turn seconds to minutes.
 int switchState = 0; // State of Switch - Don't change value manually
 
 // Values for timers
-double timeToStand =  minute * 60; // Minutes to sit before alarm turn on - Change only number value
-double timeToSit = minute * 10; // Minutes to stand before alarm turns off - Change only number value
+double timeToStand =   minute * 60; // Minutes to sit before alarm turn on - Change only number value
+double timeToSit =  minute * 10; // Minutes to stand before alarm turns off - Change only number value
 
 // Variables to count times.
 double sitTime = 0; // How long user has sat on chair - Don't change this manually.
@@ -27,7 +27,7 @@ void setup(){
 // Alarm sound
 void buzz(){
    tone(BUZZER, 1000); // Send 1000hz sound signal
-  delay(1000);        // for 0.8 sec
+  delay(1000);        // for 1 sec
   noTone(BUZZER);     // Stop sound
 }
 
@@ -50,6 +50,8 @@ void alarm(){
    }
  }
   sitTime = 0;                          // reset sit time
+  afkTime = 0;
+  standTime = 0;
   digitalWrite(RED_LED, LOW);            // Turn Red LED OFF when loop turns off
 }
 
@@ -59,6 +61,7 @@ void afk(){
    while(switchState == HIGH && sitTime > 0){    // if user not sit or sit time is 0, start loop
      delay(1000);                                // wait 1sec
      switchState = digitalRead(SWITCHER);        // check if user sit
+      Serial.println("AFK time:");                    // print crap to pc screen
      Serial.println(afkTime);                    // print crap to pc screen
      afkTime++;                                 // increase afk time by 1
        if(afkTime > (sitTime / 2)){            // if afk time is more than half of sit time:
@@ -79,6 +82,7 @@ if(switchState == LOW){               // If person sits
     }else{                            // If person is allowed to still sit:
       delay(1000);                    // Wait 1sec
       sitTime++;                      // Increase sit time by 1
+      Serial.println("Sit time: ");       // print junk to pc screen
       Serial.println(sitTime);        // print junk to pc screen
     }
 }else{                                // If nobody sit:
